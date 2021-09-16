@@ -1,17 +1,17 @@
-class zombie{
+class wave2_monster{
     constructor(x){
         this.x = x;
         this.y = windowHeight- 150;
-        this.health = 100;
-        this.power = 0.1;
-        this.body = Matter.Bodies.rectangle(this.x, this.y, 50, 100);
+        this.health = 170;
+        this.power = 0.5;
+        this.body = Matter.Bodies.rectangle(this.x, this.y, 80, 100);
         this.body.isStatic = false;
     }
     setProperties(){
         let sprite = this.body.render.sprite;
-        sprite.texture = zombie_img[0];
-        sprite.xScale = 0.25;
-        sprite.yScale = 0.25;
+        sprite.texture = mons_img[0];
+        sprite.xScale = 0.43;
+        sprite.yScale = 0.53;
         this.body.friction = 0.03;
     }
     move(){
@@ -19,7 +19,7 @@ class zombie{
     }
     update_img(i){
         let sprite = this.body.render.sprite;
-        sprite.texture = zombie_img[i];
+        sprite.texture = mons_img[i];
     }
     position_enemy(){
         return this.body.position.x;

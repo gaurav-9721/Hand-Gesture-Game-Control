@@ -1,7 +1,7 @@
 class SlingShot {
     constructor() {
-        this.x = 120;
-        this.y = windowHeight- 320;
+        this.x = 150;
+        this.y = windowHeight- 280;
         this.width = 1;
         this.height = 90;
         this.slingX = this.x;
@@ -39,7 +39,7 @@ class SlingShot {
 
     moveBall(X, Y){
         if(this.dragBall && (this.currentBall > -1)){
-            Matter.Body.set(this.Balls[this.currentBall].body, "position", {x: 2*X-300, y: 2*Y});
+            Matter.Body.set(this.Balls[this.currentBall].body, "position", {x: 2*X-300, y: 2*Y+400});
             this.allowShoot = true;
         }
     }
@@ -61,8 +61,6 @@ class SlingShot {
 
     handOverBall(X, Y){
         var rad = 30; //Change later
-
-
 
         let bx = this.Balls[this.currentBall].body.position.x;
         let by = this.Balls[this.currentBall].body.position.y;
@@ -97,14 +95,47 @@ class SlingShot {
         for(var i= 0; i <= this.currentBall; i++){
             for(var j=0; j< zombies.length; j++) {
                 if (Matter.SAT.collides(this.Balls[i].body, zombies[j].body).collided) {
-                    console.log("Collided with Enemy");
+
                     this.Balls[i].body.render.sprite.texture = explodeImage;
                     this.Balls[i].body.render.sprite.yScale = 0.5;
                     this.Balls[i].body.render.sprite.xScale = 0.5;
-                    let ball = this.Balls[i].body;
-                    zombies[j].update_Health();
+                    let ball = this.Balls[i];
+
+                    if (ball.damageKardiya === false){
+                        console.log("Collided with Enemy");
+                          zombies[i].update_Health();
+                          zombie_health_bar[j].update_health(50);
+                          index = zombie_health_bar[j].check_health();
+                          zombie_health_bar[j].update_img(index);
+                        ball.damageKardiya = true;
+                    }
                     setTimeout(function (){
-                        World.remove(engine.world, ball);
+                        World.remove(engine.world, ball.body);
+                    }, 20);
+
+                    this.Balls.splice(i,i);
+                    this.currentBall = this.Balls.length-1;
+
+                }
+            }
+            for(var j=0; j< wave2_mons.length; j++) {
+                if (Matter.SAT.collides(this.Balls[i].body, wave2_mons[j].body).collided) {
+
+                    this.Balls[i].body.render.sprite.texture = explodeImage;
+                    this.Balls[i].body.render.sprite.yScale = 0.5;
+                    this.Balls[i].body.render.sprite.xScale = 0.5;
+                    let ball = this.Balls[i];
+
+                    if (ball.damageKardiya === false){
+                        console.log("Collided with Enemy");
+                          wave2_mons[i].update_Health();
+                          wave2_health_bar[j].update_health(50);
+                          index = wave2_health_bar[j].check_health();
+                          wave2_health_bar[j].update_img(index);
+                        ball.damageKardiya = true;
+                    }
+                    setTimeout(function (){
+                        World.remove(engine.world, ball.body);
                     }, 20);
 
                     this.Balls.splice(i,i);
@@ -115,16 +146,15 @@ class SlingShot {
         }
     }
 
-    removeBall( ball){
-        World.remove(engine.world, ball);
-    }
 
     setProperties(){
         this.body.isStatic = true;
+        this.body.collisionFilter.mask = 0;
         let sprite = this.body.render.sprite
         sprite.texture = slingImage;
+        this.body.collisionFilter.mask = 0;
         sprite.xScale = 0.28;
-        sprite.yScale =0.325;
+        sprite.yScale =0.28;
         this.body.friction = 0.03;
 
     }
