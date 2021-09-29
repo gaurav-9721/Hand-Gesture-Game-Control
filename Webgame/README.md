@@ -16,13 +16,13 @@ Requires to be in project folder
 - Django Framework (Python)
 
 
-`pip install Django`
+    `pip install Django`
 - Django Channels (Python)
 
     `pip install channels`
 - Matter-JS (JavaScript) [Optional - included in project as link]
 
-`npm install matter-js`
+    `npm install matter-js`
 
     Requires node.js as prerequisite. [Download Node.js](https://nodejs.org/en/)
 
