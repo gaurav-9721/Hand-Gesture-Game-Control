@@ -5,6 +5,15 @@
 
 Requires to be in project folder
 
+
+## Description
+An angry birds game which you can control using your fingers. Your Webcamera detects your hand using Image Processing (Python). Mediapipe library is used for hand-detection and OpenCV fro further Image Processing. The game is developed using Matter-JS physics Engine in JavaScript. 
+
+
+## How to Play
+Use **Index finger to move hand** in-game. Move **Index + Middle to drag Ball**. Release Middle finger to release ball from SlingShot.
+
+
 ## Dependencies
 **Note: Use conda instead of pip f you are using Anaconda Environment**
  - OpenCV Library (Python)
@@ -25,6 +34,7 @@ Requires to be in project folder
     `npm install matter-js`
 
     Requires node.js as prerequisite. [Download Node.js](https://nodejs.org/en/)
+
 
 ## Other Requirements
 
