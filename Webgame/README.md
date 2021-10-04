@@ -1,7 +1,7 @@
 # A Game you can control using your hands through computer vision.
 
 ## Run using
-    `python manage.py runsever`
+    python manage.py runsever
 
 Requires to be in project folder
 
